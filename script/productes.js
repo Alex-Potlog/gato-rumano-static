@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const card = document.createElement('article');
           card.className = 'ofertProduct';
           card.innerHTML = `
-            <img src="https://raw.githubusercontent.com/marmeow/php-project/main/public/resources/images/products/${item.imatge}" alt="${item.nom}" />
+            <img src="../images/products/${item.imatge}" alt="${item.nom}" />
             <h4>${item.nom}</h4>
             <p>${item['descripció'] || item.descripcio}</p>
             <p class="preuAbans">Abans: ${(item.preu || 0).toFixed(2)} €</p>

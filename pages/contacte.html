@@ -3,18 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Productes | Gato Rumano</title>
-  <link rel="shortcut icon" href="https://raw.githubusercontent.com/marmeow/php-project/main/public/resources/icons/favicon.ico" type="image/x-icon" />
+  <title>Contacte | Gato Rumano</title>
+  <link rel="shortcut icon" href="../icons/favicon.ico" type="image/x-icon" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../styles.css" />
   <script defer src="../script.js"></script>
   <script defer src="../script/theme.js"></script>
-  <script defer src="../script/productes.js"></script>
   <script src="https://kit.fontawesome.com/dcb488a0b2.js" crossorigin="anonymous"></script>
 </head>
-<body id="product-page">
+<body id="contact-page">
   <div class="container">
     <header id="header-top" class="flex">
       <p>Purr-fect food for a purr-fect time.</p>
@@ -27,21 +26,21 @@
 
     <header id="header-bottom" class="flex">
       <a class="logo" href="../index.html">
-        <img src="https://raw.githubusercontent.com/marmeow/php-project/main/public/resources/images/logo.png" alt="Logo El Gato Rumano" />
+        <img src="../images/logo.png" alt="Logo El Gato Rumano" />
       </a>
       <button class="burgerbtn icon" aria-label="Abrir menú"><i class="fa-solid fa-bars"></i></button>
       <div id="overlay"></div>
 
       <nav>
         <button class="closebtn" aria-label="Cerrar menú"><i class="fa-solid fa-xmark"></i></button>
-        <img src="https://raw.githubusercontent.com/marmeow/php-project/main/public/resources/images/espresso.webp" alt="Espresso" />
+        <img src="../images/espresso.webp" alt="Espresso" />
         <ul>
           <li><a href="../index.html">Home</a></li>
-          <li class="active-link"><a href="#">Productes</a></li>
-          <li><a href="contacte.html">Contacte</a></li>
+          <li><a href="productes.html">Productes</a></li>
+          <li class="active-link"><a href="#">Contacte</a></li>
           <li><a href="copyright.html">Avís legal</a></li>
           <div class="icons flex">
-            <li><a href="contacte.html"><i class="fa-solid fa-cart-shopping fa-lg"></i></a></li>
+            <li><a href="productes.html"><i class="fa-solid fa-cart-shopping fa-lg"></i></a></li>
             <li><a href="contacte.html" id="user-icon"><i class="fa-solid fa-user fa-lg btnuser-icon"></i></a></li>
             <li>
               <a id="darkLight" href="#" aria-label="Cambiar tema">
@@ -54,32 +53,58 @@
       </nav>
     </header>
 
-    <main>
-      <section id="banner">
-        <h1>La taula sempre<br>llesta per a <span>tu</span></h1>
-      </section>
+    <main id="main">
+      <div class="page-title">
+        <h1>Contacta amb nosaltres</h1>
+        <p>Estem aquí per ajudar-te</p>
+      </div>
 
-      <section id="productes">
-        <h2>Els nostres productes</h2>
-        <section id="entrepans">
-          <h3>Entrepans</h3>
-          <div class="tab">
-            <button class="tablinks btnfreds active" type="button" data-target="freds">Freds</button>
-            <button class="tablinks btncalents" type="button" data-target="calents">Calents</button>
+      <section class="contact-content">
+        <div class="info-column">
+          <h2>On trobar-nos</h2>
+
+          <div class="address-block">
+            <p><i class="fa-solid fa-location-dot"></i> Riera de Cirera, 57</p>
+            <p style="padding-left: 30px;">08304 Mataró, Barcelona</p>
           </div>
 
-          <div id="freds" class="tabcontent">
-            <h4>Freds</h4>
-            <p>Els nostres entrepans <span class="tipus-entrepa">freds!</span></p>
-            <div class="product-cards flex"></div>
+          <div class="address-block">
+            <p><i class="fa-solid fa-phone"></i> +34 937 555 555</p>
+            <p><i class="fa-solid fa-envelope"></i> hola@gatorumano.cat</p>
           </div>
 
-          <div id="calents" class="tabcontent" style="display:none;">
-            <h4>Calents</h4>
-            <p>Els nostres entrepans <span class="tipus-entrepa">calents!</span></p>
-            <div class="product-cards flex"></div>
+          <div class="map-container">
+            <iframe
+              src="https://www.google.com/maps?q=Riera%20de%20Cirera%2057%20Matar%C3%B3&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen>
+            </iframe>
           </div>
-        </section>
+        </div>
+
+        <div class="form-column">
+          <h2>Envia'ns un missatge</h2>
+          <form action="#" method="post">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" placeholder="El teu nom..." required />
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="El teu correu electrònic..." required />
+
+            <label for="assumpte">Assumpte</label>
+            <select id="assumpte" name="assumpte">
+              <option value="general">Consulta General</option>
+              <option value="reservas">Reserves</option>
+              <option value="sugerencias">Suggeriments</option>
+            </select>
+
+            <label for="missatge">Missatge</label>
+            <textarea id="missatge" name="missatge" rows="5" placeholder="Escriu aquí el teu missatge..." required></textarea>
+
+            <button type="submit">Enviar</button>
+          </form>
+        </div>
       </section>
     </main>
 
@@ -89,8 +114,8 @@
         <nav>
           <ul>
             <li><a href="../index.html">Home</a></li>
-            <li><a href="#">Productes</a></li>
-            <li><a href="contacte.html">Contacte</a></li>
+            <li><a href="productes.html">Productes</a></li>
+            <li><a href="#">Contacte</a></li>
             <li><a href="copyright.html">Avís legal</a></li>
           </ul>
         </nav>

@@ -1,10 +1,10 @@
 window.addEventListener('load', () => {
   const imagenes = [
-    'https://raw.githubusercontent.com/marmeow/php-project/main/public/resources/images/principal/coffee-shop.webp',
-    'https://raw.githubusercontent.com/marmeow/php-project/main/public/resources/images/principal/coffee.webp',
-    'https://raw.githubusercontent.com/marmeow/php-project/main/public/resources/images/principal/bocadillos.webp',
-    'https://raw.githubusercontent.com/marmeow/php-project/main/public/resources/images/principal/zumo.webp',
-    'https://raw.githubusercontent.com/marmeow/php-project/main/public/resources/images/principal/bocadillos2.webp'
+    'images/principal/coffee-shop.webp',
+    'images/principal/coffee.webp',
+    'images/principal/bocadillos.webp',
+    'images/principal/zumo.webp',
+    'images/principal/bocadillos2.webp'
   ];
 
   const titulos = [
