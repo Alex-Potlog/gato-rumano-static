@@ -1,0 +1,74 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const buttonSet = document.querySelectorAll('.tablinks');
+  buttonSet.forEach((button) => {
+    button.addEventListener('click', () => {
+      const target = button.dataset.target;
+      const tabcontent = document.querySelectorAll('.tabcontent');
+      tabcontent.forEach((item) => {
+        item.style.display = 'none';
+      });
+
+      document.getElementById(target).style.display = 'block';
+      buttonSet.forEach((btn) => btn.classList.remove('active'));
+      button.classList.add('active');
+    });
+  });
+
+  fetch('../data/products.json')
+    .then((response) => response.json())
+    .then((data) => {
+      const products = Array.isArray(data.productes) ? data.productes : [];
+      const categories = {
+        freds: [],
+        calents: []
+      };
+
+      products.forEach((product) => {
+        if (product.categoria === 'entrepans') {
+          const isCold = (product['descripció'] || product.descripcio || '').toLowerCase().includes('fred');
+          categories[isCold ? 'freds' : 'calents'].push(product);
+        }
+      });
+
+      const fredsWrap = document.querySelector('#freds .product-cards');
+      const calentsWrap = document.querySelector('#calents .product-cards');
+
+      if (fredsWrap) fredsWrap.innerHTML = categories.freds.map(renderCard).join('');
+      if (calentsWrap) calentsWrap.innerHTML = categories.calents.map(renderCard).join('');
+    })
+    .catch(() => {
+      document.querySelectorAll('.product-cards').forEach((wrap) => {
+        wrap.innerHTML = '<p class="empty-state">No s’han pogut carregar els productes.</p>';
+      });
+    });
+});
+
+function renderCard(product) {
+  const image = product.imatge || 'placeholder.png';
+  const prix = Number(product.preu || 0).toFixed(2);
+  const description = product['descripció'] || product.descripcio || 'Producte del dia';
+
+  return `
+    <article class="product-card" data-producte="${product.nom}">
+      <div class="inner">
+        <img src="https://raw.githubusercontent.com/marmeow/php-project/main/public/resources/images/products/${image}" alt="${product.nom}" />
+        <h5>${product.nom}</h5>
+        <p class="descripcio">${description}</p>
+        <div class="preu-oferta-container">
+          <p class="preu-iva"><span class="preu">${prix}</span> € <span class="iva">IVA inclós</span></p>
+          ${product.oferta ? '<div class="oferta-badge">Oferta!</div>' : ''}
+        </div>
+        <div class="cont">
+          <div class="crtdiv">
+            <button type="button" class="cart btn-cart">Afegir a la cistella</button>
+            <span class="qty">
+              <span class="dec"><i class="fa fa-minus" aria-hidden="true"></i></span>
+              <span class="num">1</span>
+              <span class="inc"><i class="fa fa-plus" aria-hidden="true"></i></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </article>
+  `;
+}
