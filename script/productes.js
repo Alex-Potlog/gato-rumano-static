@@ -1,68 +1,312 @@
 const PRODUCTES = [
   {
-    nom: 'Entrepà de pernil ibèric',
-    categoria: 'entrepans',
-    descripció: 'Fred amb pernil ibèric, formatge i tomàquet',
-    preu: 8.5,
-    imatge: 'entrpa-pernil.png',
-    oferta: true
-  },
-  {
-    nom: 'Entrepà de xoriço',
-    categoria: 'entrepans',
-    descripció: 'Fred de xoriço, formatge i enciam',
-    preu: 7.5,
-    imatge: 'entrepa-chorizo.png',
-    oferta: true
-  },
-  {
-    nom: 'Entrepà de pollastre',
-    categoria: 'entrepans',
-    descripció: 'Fred amb pollastre, maionesa i cogombre',
-    preu: 7.9,
-    imatge: 'placeholder.png',
-    oferta: false
-  },
-  {
-    nom: 'Entrepà de botifarra',
-    categoria: 'entrepans',
-    descripció: 'Calent de botifarra, ceba i formatge',
-    preu: 8.2,
-    imatge: 'placeholder.png',
-    oferta: false
-  },
-  {
-    nom: 'Entrepà de carn',
-    categoria: 'entrepans',
-    descripció: 'Calent amb carn, salsa i cebes',
-    preu: 9.1,
-    imatge: 'placeholder.png',
-    oferta: true
-  },
-  {
-    nom: 'Entrepà de mozzarella',
-    categoria: 'entrepans',
-    descripció: 'Calent amb mozzarella, tomàquet i albahaca',
-    preu: 8.8,
-    imatge: 'placeholder.png',
-    oferta: false
-  },
-  {
-    nom: 'Entrepà de salmó',
-    categoria: 'entrepans',
-    descripció: 'Fred de salmó, crema de formatge i enciam',
-    preu: 9.4,
-    imatge: 'placeholder.png',
-    oferta: true
-  },
-  {
-    nom: 'Entrepà de bacó',
-    categoria: 'entrepans',
-    descripció: 'Calent amb bacó, formatge i salsa de la casa',
-    preu: 8.7,
-    imatge: 'entrepa-baco.png',
-    oferta: false
-  }
+            "nom": "Aigua",
+            "preu": 1,
+            "descripció": "Ampolla aigua de 250ml",
+            "categoria": "begudes",
+            "oferta": false,
+            "imatge": "agua.png",
+            "horario": [
+                "manana",
+                "tarde",
+                "noche"
+            ]
+        },
+        {
+            "nom": "Cacaolat",
+            "preu": 2.5,
+            "descripció": "Ampolla cacacolat de 275ml",
+            "categoria": "begudes",
+            "oferta": true,
+            "imatge": "cacaolat.png",
+            "horario": [
+                "manana",
+                "tarde"
+            ]
+        },
+        {
+            "nom": "Fanta",
+            "preu": 1.5,
+            "descripció": "Refresc de cola original llauna 33 cl",
+            "categoria": "begudes",
+            "oferta": true,
+            "imatge": "fanta.png",
+            "horario": [
+                "manana",
+                "tarde",
+                "noche"
+            ]
+        },
+        {
+            "nom": "Coca-Cola",
+            "preu": 1.5,
+            "descripció": "Refresc de cola original llauna 33 cl",
+            "categoria": "begudes",
+            "oferta": true,
+            "imatge": "cocacola.png",
+            "horario": [
+                "manana",
+                "tarde",
+                "noche"
+            ]
+        },
+        {
+            "nom": "Cafè",
+            "preu": 0.7,
+            "descripció": "Cafè expresso acabat de fer",
+            "categoria": "begudes",
+            "oferta": false,
+            "imatge": "cafe.png",
+            "horario": [
+                "manana",
+                "tarde"
+            ]
+        },
+        {
+            "nom": "Tallat",
+            "preu": 0.85,
+            "descripció": "Cafè descafeïnat acabat de fer",
+            "categoria": "begudes",
+            "oferta": false,
+            "imatge": "tallat.png",
+            "horario": [
+                "manana",
+                "tarde"
+            ]
+        },
+        {
+            "nom": "Cafè amb llet",
+            "preu": 1,
+            "descripció": "Cafè amb llet acabat de fer",
+            "categoria": "begudes",
+            "oferta": true,
+            "imatge": "cafe-llet.png",
+            "horario": [
+                "manana",
+                "tarde"
+            ]
+        },
+        {
+            "nom": "Entrepà de llom",
+            "preu": 3.5,
+            "descripció": "Entrepà calent de llom amb tomàquet",
+            "categoria": "entrepans",
+            "oferta": true,
+            "imatge": "entrepa-llom.png",
+            "horario": [
+                "manana",
+                "tarde"
+            ]
+        },
+        {
+            "nom": "Entrepà de truita",
+            "preu": 3,
+            "descripció": "Entrepà calent de truita amb tomàquet",
+            "categoria": "entrepans",
+            "oferta": false,
+            "imatge": "entrepa-truita.png",
+            "horario": [
+                "manana",
+                "tarde"
+            ]
+        },
+        {
+            "nom": "Entrepà de bacó",
+            "preu": 4,
+            "descripció": "Entrepà calent de bacó amb tomàquet",
+            "categoria": "entrepans",
+            "oferta": true,
+            "imatge": "entrepa-baco.png",
+            "horario": [
+                "manana",
+                "tarde"
+            ]
+        },
+        {
+            "nom": "Entrepà de pernil salat",
+            "preu": 4,
+            "descripció": "Entrepà fred de pernil salat amb tomàquet",
+            "categoria": "entrepans",
+            "oferta": true,
+            "imatge": "entrpa-pernil.png",
+            "horario": [
+                "manana",
+                "tarde",
+                "noche"
+            ]
+        },
+        {
+            "nom": "Entrepà de pernil dolç i formatge",
+            "preu": 2.5,
+            "descripció": "Entrepà fred de pernil dolç i formatge amb tomàquet",
+            "categoria": "entrepans",
+            "oferta": false,
+            "imatge": "entrpa-pernil-d.png",
+            "horario": [
+                "manana",
+                "tarde",
+                "noche"
+            ]
+        },
+        {
+            "nom": "Entrapà de xoriço",
+            "preu": 3,
+            "descripció": "Entrepà fred de xoriço amb tomàquet",
+            "categoria": "entrepans",
+            "oferta": false,
+            "imatge": "entrepa-chorizo.png",
+            "horario": [
+                "manana",
+                "tarde",
+                "noche"
+            ]
+        },
+        {
+            "nom": "Croissant",
+            "preu": 0.75,
+            "descripció": "Croissant tradicional de mantega",
+            "categoria": "brioixeria",
+            "oferta": false,
+            "imatge": "croissant.png",
+            "horario": [
+                "manana"
+            ]
+        },
+        {
+            "nom": "Croissant de xocolata",
+            "preu": 1.5,
+            "descripció": "Croissant farcit de xocolata",
+            "categoria": "brioixeria",
+            "oferta": true,
+            "imatge": "croissant-choco.png",
+            "horario": [
+                "manana"
+            ]
+        },
+        {
+            "nom": "Magdalena",
+            "preu": 0.85,
+            "descripció": "Magdalena casolana",
+            "categoria": "brioixeria",
+            "oferta": false,
+            "imatge": "magdalena.png",
+            "horario": [
+                "manana",
+                "tarde"
+            ]
+        },
+        {
+            "nom": "Magdalena de xocolata",
+            "preu": 1.4,
+            "descripció": "Magdalena casolana amb trossets de xocolata",
+            "categoria": "brioixeria",
+            "oferta": true,
+            "imatge": "magdalena-choco.png",
+            "horario": [
+                "manana",
+                "tarde"
+            ]
+        },
+        {
+            "nom": "Napolitana de crema",
+            "preu": 1.1,
+            "descripció": "Napolitana farcida de crema",
+            "categoria": "brioixeria",
+            "oferta": true,
+            "imatge": "napolitana.png",
+            "horario": [
+                "manana"
+            ]
+        },
+        {
+            "nom": "Napolitana de xocolata",
+            "preu": 1.1,
+            "descripció": "Napolitana farcida de xocolata",
+            "categoria": "brioixeria",
+            "oferta": true,
+            "imatge": "napolitana-choco.png",
+            "horario": [
+                "manana",
+                "tarde"
+            ]
+        },
+        {
+            "nom": "Kinder Bueno",
+            "preu": 1,
+            "descripció": "Barretes de xocolata Kinder",
+            "categoria": "snacks",
+            "oferta": true,
+            "imatge": "kinder-bueno.png",
+            "horario": [
+                "manana",
+                "tarde",
+                "noche"
+            ]
+        },
+        {
+            "nom": "Kit Kat",
+            "preu": 1,
+            "descripció": "Barretes de xocolata Kit Kat",
+            "categoria": "snacks",
+            "oferta": true,
+            "imatge": "kitkat.png",
+            "horario": [
+                "manana",
+                "tarde",
+                "noche"
+            ]
+        },
+        {
+            "nom": "Twix",
+            "preu": 1,
+            "descripció": "Barretes de xocolata Twix",
+            "categoria": "snacks",
+            "oferta": true,
+            "imatge": "twix.png",
+            "horario": [
+                "manana",
+                "tarde",
+                "noche"
+            ]
+        },
+        {
+            "nom": "Lays al punt de sal",
+            "preu": 0.95,
+            "descripció": "Bossa de patates fregides Lays al punt de sal 150g",
+            "categoria": "snacks",
+            "oferta": false,
+            "imatge": "lays.png",
+            "horario": [
+                "tarde",
+                "noche"
+            ]
+        },
+        {
+            "nom": "Ruffles",
+            "preu": 0.95,
+            "descripció": "Bossa de patates fregides Ruffles 150g",
+            "categoria": "snacks",
+            "oferta": false,
+            "imatge": "ruffles.png",
+            "horario": [
+                "manana",
+                "tarde",
+                "noche"
+            ]
+        },
+        {
+            "nom": "Doritos",
+            "preu": 0.95,
+            "descripció": "Bossa de nachos Doritos 150g",
+            "categoria": "snacks",
+            "oferta": false,
+            "imatge": "doritos.png",
+            "horario": [
+                "manana",
+                "tarde",
+                "noche"
+            ]
+        }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
