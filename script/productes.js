@@ -4,7 +4,7 @@ const PRODUCTES = [
     categoria: 'entrepans',
     descripció: 'Fred amb pernil ibèric, formatge i tomàquet',
     preu: 8.5,
-    imatge: 'entrepan-pernil.jpg',
+    imatge: 'entrpa-pernil.png',
     oferta: true
   },
   {
@@ -12,7 +12,7 @@ const PRODUCTES = [
     categoria: 'entrepans',
     descripció: 'Fred de xoriço, formatge i enciam',
     preu: 7.5,
-    imatge: 'entrepan-xorico.jpg',
+    imatge: 'entrepa-chorizo.png',
     oferta: true
   },
   {
@@ -20,7 +20,7 @@ const PRODUCTES = [
     categoria: 'entrepans',
     descripció: 'Fred amb pollastre, maionesa i cogombre',
     preu: 7.9,
-    imatge: 'entrepan-pollastre.jpg',
+    imatge: 'placeholder.png',
     oferta: false
   },
   {
@@ -28,7 +28,7 @@ const PRODUCTES = [
     categoria: 'entrepans',
     descripció: 'Calent de botifarra, ceba i formatge',
     preu: 8.2,
-    imatge: 'entrepan-botifarra.jpg',
+    imatge: 'placeholder.png',
     oferta: false
   },
   {
@@ -36,7 +36,7 @@ const PRODUCTES = [
     categoria: 'entrepans',
     descripció: 'Calent amb carn, salsa i cebes',
     preu: 9.1,
-    imatge: 'entrepan-carn.jpg',
+    imatge: 'placeholder.png',
     oferta: true
   },
   {
@@ -44,7 +44,7 @@ const PRODUCTES = [
     categoria: 'entrepans',
     descripció: 'Calent amb mozzarella, tomàquet i albahaca',
     preu: 8.8,
-    imatge: 'entrepan-mozzarella.jpg',
+    imatge: 'placeholder.png',
     oferta: false
   },
   {
@@ -52,7 +52,7 @@ const PRODUCTES = [
     categoria: 'entrepans',
     descripció: 'Fred de salmó, crema de formatge i enciam',
     preu: 9.4,
-    imatge: 'entrepan-salmo.jpg',
+    imatge: 'placeholder.png',
     oferta: true
   },
   {
@@ -60,7 +60,7 @@ const PRODUCTES = [
     categoria: 'entrepans',
     descripció: 'Calent amb bacó, formatge i salsa de la casa',
     preu: 8.7,
-    imatge: 'entrepan-baco.jpg',
+    imatge: 'entrepa-baco.png',
     oferta: false
   }
 ];
@@ -127,7 +127,7 @@ function renderCard(product) {
   return `
     <article class="product-card" data-producte="${escapeHtml(product.nom || '')}">
       <div class="inner">
-        <img src="https://raw.githubusercontent.com/marmeow/php-project/main/public/resources/images/products/${image}" alt="${escapeHtml(product.nom || '')}" />
+        <img src="/images/products/${image}" alt="${escapeHtml(product.nom || '')}" />
         <h5>${escapeHtml(product.nom || '')}</h5>
         <p class="descripcio">${escapeHtml(description)}</p>
         <div class="preu-oferta-container">
