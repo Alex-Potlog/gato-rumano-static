@@ -2,7 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const ofertaSection = document.getElementById('ofertes');
   if (!ofertaSection) return;
 
-  fetch('../data/products.json')
+  const productsPath = window.location.pathname.includes('/pages/')
+    ? '../data/products.json'
+    : 'data/products.json';
+
+  fetch(productsPath)
     .then((response) => response.json())
     .then((data) => {
       const products = Array.isArray(data.productes) ? data.productes : [];
