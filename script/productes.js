@@ -1,56 +1,159 @@
+const PRODUCTES = [
+  {
+    nom: 'Entrepà de pernil ibèric',
+    categoria: 'entrepans',
+    descripció: 'Fred amb pernil ibèric, formatge i tomàquet',
+    preu: 8.5,
+    imatge: 'entrepan-pernil.jpg',
+    oferta: true
+  },
+  {
+    nom: 'Entrepà de xoriço',
+    categoria: 'entrepans',
+    descripció: 'Fred de xoriço, formatge i enciam',
+    preu: 7.5,
+    imatge: 'entrepan-xorico.jpg',
+    oferta: true
+  },
+  {
+    nom: 'Entrepà de pollastre',
+    categoria: 'entrepans',
+    descripció: 'Fred amb pollastre, maionesa i cogombre',
+    preu: 7.9,
+    imatge: 'entrepan-pollastre.jpg',
+    oferta: false
+  },
+  {
+    nom: 'Entrepà de botifarra',
+    categoria: 'entrepans',
+    descripció: 'Calent de botifarra, ceba i formatge',
+    preu: 8.2,
+    imatge: 'entrepan-botifarra.jpg',
+    oferta: false
+  },
+  {
+    nom: 'Entrepà de carn',
+    categoria: 'entrepans',
+    descripció: 'Calent amb carn, salsa i cebes',
+    preu: 9.1,
+    imatge: 'entrepan-carn.jpg',
+    oferta: true
+  },
+  {
+    nom: 'Entrepà de mozzarella',
+    categoria: 'entrepans',
+    descripció: 'Calent amb mozzarella, tomàquet i albahaca',
+    preu: 8.8,
+    imatge: 'entrepan-mozzarella.jpg',
+    oferta: false
+  },
+  {
+    nom: 'Entrepà de salmó',
+    categoria: 'entrepans',
+    descripció: 'Fred de salmó, crema de formatge i enciam',
+    preu: 9.4,
+    imatge: 'entrepan-salmo.jpg',
+    oferta: true
+  },
+  {
+    nom: 'Entrepà de bacó',
+    categoria: 'entrepans',
+    descripció: 'Calent amb bacó, formatge i salsa de la casa',
+    preu: 8.7,
+    imatge: 'entrepan-baco.jpg',
+    oferta: false
+  }
+];
+
 document.addEventListener('DOMContentLoaded', () => {
-  const ofertaSection = document.getElementById('ofertes');
-  if (!ofertaSection) return;
+  const buttonSet = document.querySelectorAll('.tablinks');
 
-  fetch('/data/products.json')
-    .then((response) => response.json())
-    .then((data) => {
-      const products = Array.isArray(data.productes) ? data.productes : [];
-      const ofertaProducts = products.filter((product) => product.oferta);
+  buttonSet.forEach((button) => {
+    button.addEventListener('click', () => {
+      const target = button.dataset.target;
+      const tabcontent = document.querySelectorAll('.tabcontent');
 
-      if (!ofertaProducts.length) {
-        ofertaSection.innerHTML += '<p class="empty-state">No hi ha ofertes disponibles en aquest moment.</p>';
-        return;
+      tabcontent.forEach((item) => {
+        item.style.display = 'none';
+      });
+
+      const activeTab = document.getElementById(target);
+      if (activeTab) {
+        activeTab.style.display = 'block';
       }
 
-      const categories = {};
-      ofertaProducts.forEach((product) => {
-        const category = product.categoria || 'General';
-        if (!categories[category]) categories[category] = [];
-        categories[category].push(product);
-      });
-
-      Object.entries(categories).forEach(([category, items]) => {
-        const section = document.createElement('section');
-        section.className = 'seccioCategoria';
-        section.id = category;
-
-        const h3 = document.createElement('h3');
-        h3.textContent = category.charAt(0).toUpperCase() + category.slice(1);
-
-        const productsWrap = document.createElement('div');
-        productsWrap.className = 'productes';
-
-        items.forEach((item) => {
-          const card = document.createElement('article');
-          card.className = 'ofertProduct';
-          card.innerHTML = `
-            <img src="/images/products/${item.imatge}" alt="${item.nom}" />
-            <h4>${item.nom}</h4>
-            <p>${item['descripció'] || item.descripcio}</p>
-            <p class="preuAbans">Abans: ${(item.preu || 0).toFixed(2)} €</p>
-            <p class="preuDescompte">Ara: ${(item.preu * 0.8).toFixed(2)} €</p>
-            <p class="percent">Gaudeix del 20% de descompte</p>
-          `;
-          productsWrap.appendChild(card);
-        });
-
-        section.appendChild(h3);
-        section.appendChild(productsWrap);
-        ofertaSection.appendChild(section);
-      });
-    })
-    .catch(() => {
-      ofertaSection.innerHTML += '<p class="empty-state">No s’han pogut carregar les ofertes.</p>';
+      buttonSet.forEach((btn) => btn.classList.remove('active'));
+      button.classList.add('active');
     });
+  });
+
+  const products = Array.isArray(PRODUCTES) ? PRODUCTES : [];
+  const categories = {
+    freds: [],
+    calents: []
+  };
+
+  products.forEach((product) => {
+    if (product.categoria !== 'entrepans') return;
+
+    const description = `${product['descripció'] || product.descripcio || ''}`;
+    const isCold = description.toLowerCase().includes('fred');
+
+    categories[isCold ? 'freds' : 'calents'].push(product);
+  });
+
+  const fredsWrap = document.querySelector('#freds .product-cards');
+  const calentsWrap = document.querySelector('#calents .product-cards');
+
+  if (fredsWrap) {
+    fredsWrap.innerHTML = categories.freds.length
+      ? categories.freds.map(renderCard).join('')
+      : '<p class="empty-state">No hi ha entrepans freds disponibles.</p>';
+  }
+
+  if (calentsWrap) {
+    calentsWrap.innerHTML = categories.calents.length
+      ? categories.calents.map(renderCard).join('')
+      : '<p class="empty-state">No hi ha entrepans calents disponibles.</p>';
+  }
 });
+
+function renderCard(product) {
+  const image = product.imatge || 'placeholder.png';
+  const prix = Number(product.preu || 0).toFixed(2);
+  const description = product['descripció'] || product.descripcio || 'Producte del dia';
+  const offerBadge = product.oferta ? '<div class="oferta-badge">Oferta!</div>' : '';
+
+  return `
+    <article class="product-card" data-producte="${escapeHtml(product.nom || '')}">
+      <div class="inner">
+        <img src="https://raw.githubusercontent.com/marmeow/php-project/main/public/resources/images/products/${image}" alt="${escapeHtml(product.nom || '')}" />
+        <h5>${escapeHtml(product.nom || '')}</h5>
+        <p class="descripcio">${escapeHtml(description)}</p>
+        <div class="preu-oferta-container">
+          <p class="preu-iva"><span class="preu">${prix}</span> € <span class="iva">IVA inclós</span></p>
+          ${offerBadge}
+        </div>
+        <div class="cont">
+          <div class="crtdiv">
+            <button type="button" class="cart btn-cart">Afegir a la cistella</button>
+            <span class="qty">
+              <span class="dec"><i class="fa fa-minus" aria-hidden="true"></i></span>
+              <span class="num">1</span>
+              <span class="inc"><i class="fa fa-plus" aria-hidden="true"></i></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
