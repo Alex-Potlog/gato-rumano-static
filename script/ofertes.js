@@ -1,10 +1,10 @@
 window.addEventListener('load', () => {
   const imagenes = [
-    'images/principal/coffee-shop.webp',
-    'images/principal/coffee.webp',
-    'images/principal/bocadillos.webp',
-    'images/principal/zumo.webp',
-    'images/principal/bocadillos2.webp'
+    '/images/principal/coffee-shop.webp',
+    '/images/principal/coffee.webp',
+    '/images/principal/bocadillos.webp',
+    '/images/principal/zumo.webp',
+    '/images/principal/bocadillos2.webp'
   ];
 
   const titulos = [

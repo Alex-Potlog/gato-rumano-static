@@ -2,11 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const ofertaSection = document.getElementById('ofertes');
   if (!ofertaSection) return;
 
-  const productsPath = window.location.pathname.includes('/pages/')
-    ? '../data/products.json'
-    : 'data/products.json';
-
-  fetch(productsPath)
+  fetch('/data/products.json')
     .then((response) => response.json())
     .then((data) => {
       const products = Array.isArray(data.productes) ? data.productes : [];
@@ -39,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const card = document.createElement('article');
           card.className = 'ofertProduct';
           card.innerHTML = `
-            <img src="../images/products/${item.imatge}" alt="${item.nom}" />
+            <img src="/images/products/${item.imatge}" alt="${item.nom}" />
             <h4>${item.nom}</h4>
             <p>${item['descripció'] || item.descripcio}</p>
             <p class="preuAbans">Abans: ${(item.preu || 0).toFixed(2)} €</p>
